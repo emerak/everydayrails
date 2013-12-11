@@ -20,7 +20,7 @@ describe Contact do
       have(1).errors_on(:lastname)
   end
 
-  it 'is ivalidi without an email address' do
+  it 'is invalid without an email address' do
     expect(build(:contact, email: nil)).to \
       have(1).errors_on(:email)
   end
@@ -45,9 +45,9 @@ describe Contact do
 
   describe 'filter last name by letter' do
 
-    before :each do
+    before do
      @smith = create(:contact, firstname: 'John', lastname: 'Smith',
-              email: 'jsmith@example.com')
+              email: 'jsmithbongo@examples.com')
      @jones = create(:contact, firstname: 'Tim', lastname: 'Jones',
               email: 'tjones@example.com')
      @johnson = create(:contact, firstname: 'John', lastname: 'Johnson',
