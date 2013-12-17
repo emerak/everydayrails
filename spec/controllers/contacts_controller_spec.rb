@@ -77,21 +77,13 @@ describe ContactsController do
         it "creates a new contact" do
           expect{
             post :create, contact: attributes_for(:contact,
-<<<<<<< HEAD
-                                                  phones_attributes: @phones)
-=======
               phones_attributes: @phones)
->>>>>>> 07_controller_cleanup
           }.to change(Contact,:count).by(1)
         end
 
         it "redirects to the new contact" do
           post :create, contact: attributes_for(:contact,
-<<<<<<< HEAD
-                                                phones_attributes: @phones)
-=======
             phones_attributes: @phones)
->>>>>>> 07_controller_cleanup
           expect(response).to redirect_to Contact.last
         end
       end
@@ -120,17 +112,10 @@ describe ContactsController do
         it "changes @contact's attributes" do
           patch :update, id: @contact,
             contact: attributes_for(:contact,
-<<<<<<< HEAD
-                                    firstname: "Larry", lastname: "Smith")
-            @contact.reload
-            expect(@contact.firstname).to eq("Larry")
-            expect(@contact.lastname).to eq("Smith")
-=======
               firstname: "Larry", lastname: "Smith")
           @contact.reload
           expect(@contact.firstname).to eq("Larry")
           expect(@contact.lastname).to eq("Smith")
->>>>>>> 07_controller_cleanup
         end
 
         it "redirects to the updated contact" do
@@ -148,17 +133,10 @@ describe ContactsController do
         it "does not change @contact's attributes" do
           patch :update, id: @contact,
             contact: attributes_for(:contact,
-<<<<<<< HEAD
-                                    firstname: "Larry", lastname: nil)
-            @contact.reload
-            expect(@contact.firstname).to_not eq("Larry")
-            expect(@contact.lastname).to eq("Smith")
-=======
               firstname: "Larry", lastname: nil)
           @contact.reload
           expect(@contact.firstname).to_not eq("Larry")
           expect(@contact.lastname).to eq("Smith")
->>>>>>> 07_controller_cleanup
         end
 
         it "re-renders the edit method" do

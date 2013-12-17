@@ -5,7 +5,6 @@ describe Contact do
     expect(build(:contact)).to be_valid
   end
 
-
   it "is invalid without a firstname" do
     contact = build(:contact, firstname: nil)
     expect(contact).to have(1).errors_on(:firstname)
@@ -40,12 +39,12 @@ describe Contact do
   describe 'filter last name by letter' do
 
     before do
-     @smith = create(:contact, firstname: 'John', lastname: 'Smith',
-              email: 'jsmithbongo@examples.com')
-     @jones = create(:contact, firstname: 'Tim', lastname: 'Jones',
-              email: 'tjones@example.com')
-     @johnson = create(:contact, firstname: 'John', lastname: 'Johnson',
-                email: 'jjohnson@example.com')
+      @smith = create(:contact, firstname: 'John', lastname: 'Smith',
+                      email: 'jsmithbongo@examples.com')
+      @jones = create(:contact, firstname: 'Tim', lastname: 'Jones',
+                      email: 'tjones@example.com')
+      @johnson = create(:contact, firstname: 'John', lastname: 'Johnson',
+                        email: 'jjohnson@example.com')
     end
 
     context 'matching letters' do
@@ -54,7 +53,6 @@ describe Contact do
         expect(Contact.by_letter("J")).to  \
           eq [@johnson, @jones]
       end
-
     end
 
     context 'non-matching letters' do
@@ -65,29 +63,22 @@ describe Contact do
       end
     end
 
-  it "has three phone numbers" do
-    expect(create(:contact).phones.count).to eq 3
-  end
-
-  describe "filter last name by letter" do
-    before :each do
-      @smith = create(:contact,
-        lastname: 'Smith', email: 'jsmith@example.com')
-      @jones = create(:contact,
-        lastname: 'Jones', email: 'tjones@example.com')
-      @johnson = create(:contact,
-        lastname: 'Johnson', email: 'jjohnson@example.com')
+    it "has three phone numbers" do
+      expect(create(:contact).phones.count).to eq 3
     end
 
-    context "matching letters" do
-      it "returns a sorted array of results that match" do
-        expect(Contact.by_letter("J")).to eq [@johnson, @jones]
+    describe "filter last name by letter" do
+
+      context "matching letters" do
+        it "returns a sorted array of results that match" do
+          expect(Contact.by_letter("J")).to match_array [@johnson, @jones]
+        end
       end
-    end
 
-    context "non-matching letters" do
-      it "returns a sorted array of results that match" do
-        expect(Contact.by_letter("J")).to_not include @smith
+      context "non-matching letters" do
+        it "returns a sorted array of results that match" do
+          expect(Contact.by_letter("J")).to_not include @smith
+        end
       end
     end
   end
